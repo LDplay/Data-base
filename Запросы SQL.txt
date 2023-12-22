@@ -1,0 +1,42 @@
+1.
+SELECT	name, price, discount, 
+	CAST(quantity AS nvarchar) + ' '+ measurement AS [quantity], 
+	ROUND((price *quantity) - (price * quantity * discount / 100), 2) AS [revenue]
+
+FROM Product
+WHERE name = 'Хлеб' OR name = 'Молоко'
+
+2.
+Select *
+FROM Product 
+WHERE date_of_delivery = GETDATE() OR date_of_delivery = (GETDATE() - 1) AND quantity >= 10
+
+10. 
+UPDATE Product
+SET price = ROUND(price - price * 0.05, 2)
+
+11. 
+UPDATE Product 
+SET date_of_delivery = GETDATE() 
+WHERE date_of_delivery IS NULL
+
+
+12. 
+DELETE FROM Product
+WHERE quantity < 100 AND price > 70
+
+
+13.
+DELETE FROM Product
+WHERE category = 'Алкогольные напитки' OR category = 'Кондитерские Изделия' 
+
+
+16.
+DELETE FROM Product
+WHERE date_of_delivery < DATEADD(MONTH, -3, GETDATE())
+
+
+
+18.
+DELETE FROM Product
+WHERE supplier is Null OR discount > 10
